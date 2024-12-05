@@ -1,0 +1,66 @@
+<app-header title="Fan-Art"></app-header>
+
+<ion-content>
+
+  <form (submit)="sendEmail()">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="name" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Mensaje</ion-label>
+      <ion-textarea [(ngModel)]="message" name="message" required></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Enviar</ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item-sliding class="product-item" *ngFor="let p of products">
+        <ion-item>
+            <ion-avatar slot="start">
+                <img [src]="p.image" />
+            </ion-avatar>
+            <ion-label>
+               <div class="name">{{p.name}}</div> 
+               <div class="data">
+                <strong style="font-weight: bold; color: blue;">¿Qué es?:</strong>{{p.Detalle}}
+                
+                <br>
+                <strong style="font-weight: bold; color: blue;">Detalles:</strong>{{p.masDetalle}}
+               </div>
+            </ion-label>
+        </ion-item>
+
+        <!--opciones de eliminar y editar-->
+
+        <ion-item-options>
+         
+        <ion-item-option (click)=" addUpdateProduct(p)">
+            <ion-icon class="option-btn"  name="create-outline"></ion-icon>
+        </ion-item-option>
+        
+        <ion-item-option (click)="confirmDeleteProduct(p)" color="danger">
+            <ion-icon class="option-btn"  name="trash-outline"></ion-icon>
+        </ion-item-option>
+        </ion-item-options>
+
+
+
+
+    </ion-item-sliding>
+  </ion-list>   
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addUpdateProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

@@ -1,0 +1,20 @@
+<app-header title="Noticias"></app-header>
+
+<ion-content>
+
+    <ion-card *ngFor="let item of newsItems">
+        <div class="card-background" #homeCardBg></div>
+        <ion-card-header>
+          <h6>{{ item.tabTitle }}</h6>
+          <ion-card-title>{{ item.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-img [src]="item.image || 'assets/default-image.png'"></ion-img>
+          <div class="item-details">
+            <br>
+            <p>{{ item.body }}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

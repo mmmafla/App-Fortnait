@@ -1,0 +1,38 @@
+<app-header title="Torneos"></app-header>
+
+<ion-content>
+
+    <ion-card>
+
+        <img alt="" src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2024/04/02/17120562109734.jpg" />
+    
+        <ion-card-header>
+    
+          <ion-card-title>Informacion Acerca Los torneos</ion-card-title>
+    
+        </ion-card-header>
+    
+        <ion-card-content>
+          Cada torneo tiene una serie de fechas y horarios programados en los que se desarrollará la competencia. Un
+          carrusel de todas las próximas competiciones y horarios está disponible para navegar, para que los jugadores
+          puedan planificar y practicar.
+          Compite durante varias horas para ganar puntos eliminando a varios oponentes o sobreviviendo a la competencia para
+          ganar un premio. Los jugadores se enfrentan a oponentes con puntuaciones similares durante la sesión.
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-card class="custom-card" [style.background]="getGradient(tournament)" (click)="openTournamentDetails(tournament)"
+    *ngFor="let tournament of tournaments">
+    <ion-img [src]="tournament.poster" class="card-poster"></ion-img>
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        {{ tournament.name_line1 }} {{ tournament.name_line2 }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ tournament.short_description }}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

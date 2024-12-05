@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ tournament.name_line1 }} {{ tournament.name_line2 }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img [src]="tournament.poster" class="detail-poster"></ion-img>
+  <ion-card>
+    <ion-card-content>
+      <p><strong>Descripción:</strong> {{ tournament.long_description }}</p>
+      <p><strong>Región:</strong> {{ tournament.region }}</p>
+      <p><strong>Fechas:</strong> {{ tournament.schedule }}</p>
+      <p><strong>Plataformas:</strong> {{ tournament.platforms.join(', ') }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

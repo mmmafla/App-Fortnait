@@ -1,0 +1,105 @@
+<app-header title="Tienda de articulos"></app-header>
+
+<ion-content>
+
+    <ion-card>
+
+        <img alt="" src="https://pbs.twimg.com/media/F-UoHQ_XYAASvzS?format=jpg&name=large" />
+    
+        <ion-card-header>
+    
+          <ion-card-title class="ion-card-color-title">Cómo y cuándo se actualiza la tienda</ion-card-title>
+    
+        </ion-card-header>
+      
+        <ion-card-content class="ion-card-color">
+          La tienda se actualiza cada dia, normalmente a las 21:00 en tu hora local (GMT-3). Cuando la tienda de objetos se actualiza,
+          los objetos disponibles de ese momento podrian actualizarse o desaparecer para posiblemente añadir objetos nuevos.
+          ¡No te pierdas las novedades!
+        </ion-card-content>
+    
+    </ion-card>
+
+    <div>
+      <ion-grid> 
+        <ion-row>
+          <ion-col size="12" *ngFor="let category of grouped | keyvalue">
+            <!-- Título de la categoría -->
+            <div class="category-header">
+              <h2>{{ category.key }}</h2>
+            </div>
+            <!-- Contenido de la categoría -->
+            <ng-container *ngFor="let item of category.value">
+              <!-- Información del bundle -->
+              <ion-col size="12" *ngIf="item.bundle" class="bundle-col">
+                <ion-card class="bundle-card" [style.background-image]="getBackgroundImage(item.colors)">
+                  <ion-card-header>
+                    <ion-card-title>{{ item.bundle.name }}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-img *ngIf="item.bundle.image" [src]="item.bundle.image"></ion-img>
+                    <p>
+                      <strong></strong> {{ item.finalPrice }}
+                      <img src="https://fortnite-api.com/images/vbuck.png" alt="V-Bucks" style="width: 16px; vertical-align: middle; margin-left: 4px;">
+                    </p>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+      
+              <!-- Elementos del bundle -->
+              <ion-row>
+                <ion-col size="6" *ngFor="let btw of item.brItems" class="item-col">
+                  <ion-card class="item-card" [style.background-image]="getBackgroundImage(item.colors)">
+                    <ion-card-header>
+                      <ion-img *ngIf="btw.images.featured; else iconTemplate" [src]="btw.images.featured"></ion-img>
+                      <ng-template #iconTemplate>
+                        <ion-img [src]="btw.images.icon"></ion-img>
+                      </ng-template>
+                      <ion-card-title>{{ btw.name }}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>
+                        <strong></strong> {{ item.finalPrice }}
+                        <img src="https://fortnite-api.com/images/vbuck.png" alt="V-Bucks" style="width: 16px; vertical-align: middle; margin-left: 4px;">
+                      </p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+      
+              <!-- Información de la pista -->
+              <ion-row *ngIf="item.tracks && item.tracks.length > 0">
+                <ion-col size="6" class="item-col">
+                  <ion-card class="item-card" [style.background-image]="getBackgroundImage(item.colors)">
+                    <ion-card-header>
+                      <ion-img *ngIf="item.tracks[0].albumArt" [src]="item.tracks[0].albumArt" alt="Album Art"></ion-img>
+                      <ion-card-title>{{ item.tracks[0].title }}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p><strong>Artistas:</strong> {{ item.tracks[0].artist }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+      
+              <!-- Información del instrumento -->
+              <ion-row *ngIf="item.instruments && item.instruments.length > 0">
+                <ion-col size="6" class="item-col">
+                  <ion-card class="item-card" [style.background-image]="getBackgroundImage(item.colors)">
+                    <ion-card-header>
+                      <ion-img *ngIf="item.instruments[0].images.large" [src]="item.instruments[0].images.large" alt="Instrument Image"></ion-img>
+                      <ion-card-title>{{ item.instruments[0].name }}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <!-- Puedes agregar más información aquí si es necesario -->
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+</ion-content>
