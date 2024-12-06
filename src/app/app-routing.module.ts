@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule), canActivate:[AuthGuard]
   },
   {
+    path: 'e404',
+    loadChildren: () => import('./pages/main/e404/e404-routing.module').then( m => m.E404PageRoutingModule)
+  },
+  {
     path: '**',
     redirectTo: 'e404',
     pathMatch: 'full'
