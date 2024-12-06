@@ -17,6 +17,7 @@ export class MainPage implements OnInit {
     { title: 'Tienda', url: '/main/shop', icon: 'cart'},
     { title: 'Torneos', url: '/main/tournaments', icon: 'trophy'},
     { title: 'Fan-Art', url: '/main/fanart', icon: 'brush'},
+    { title: 'Comunidad', url: '/main/community', icon: 'people-circle'},
     { title: 'Error 404', url: '/main/e404', icon: 'bug'},
   ]
 

@@ -1,0 +1,30 @@
+<app-header title="Comunidad"></app-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <form (submit)="sendEmail()">
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input [(ngModel)]="name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Mensaje</ion-label>
+        <ion-textarea [(ngModel)]="message" name="message" required></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="full" type="submit">Enviar</ion-button>
+
+    </form>
+
+  </ion-card>
+
+
+</ion-content>

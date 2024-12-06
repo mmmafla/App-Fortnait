@@ -32,6 +32,10 @@ const routes: Routes = [
         path: 'e404',
         loadChildren: () => import('./e404/e404.module').then( m => m.E404PageModule)
       },
+      {
+        path: 'community',
+        loadChildren: () => import('./community/community.module').then( m => m.CommunityPageModule)
+      },
     ]
   },
 ];

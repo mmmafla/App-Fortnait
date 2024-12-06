@@ -1,5 +1,22 @@
-ion-card {
+ion-avatar{
+    width: 140px;
+    height: 140px;
+    margin: 0 auto; 
+ }
+ 
+ .photo-btn{
+     position: relative; 
+     bottom: 25px;
+ }
+ 
+ .empty-icon{
+     font-size: 140px;
+     opacity: 30%;
+ }
+
+ ion-card {
     background: var(--color-dark);
+    padding: 20px;
 }
 ion-button {
     --color: var(--color-light);
@@ -8,4 +25,10 @@ ion-button {
 }
 ion-content {
     --background: var(--color-purple);
+}
+
+ion-item {
+    --color: var(--color-light);
+    --background: var(--color-purple);
+    --border-color: var(--color-purple);
 }

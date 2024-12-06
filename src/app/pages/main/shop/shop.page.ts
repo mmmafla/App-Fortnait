@@ -13,45 +13,46 @@ export class ShopPage implements OnInit {
   number!: number;
 
   shopItems: any[]=[]; 
-  obj: any[] = [];
+  tienda: any[] = [];
   grouped: { [key: string]: any[] } = {};
 
   constructor(private fortniteShopApiService: FortniteShopApiService) { }
 
-  getBackgroundImage(colors: { color1?: string, color2?: string, color3?: string }): string {
-    if (colors.color1 && colors.color2 && colors.color3) {
-      return `linear-gradient(to bottom, #${colors.color1}, #${colors.color2}, #${colors.color3})`;
-    } else if (colors.color1 && colors.color3) {
-      return `linear-gradient(to bottom, #${colors.color1}, #${colors.color3})`;
-    } else if (colors.color1) {
-      return `#${colors.color1}`;
-    } else if (colors.color3) {
-      return `#${colors.color3}`;
-    } else {
-      return '#FFFFFF';  // Color por defecto si no hay colores
-    }
-  }
-
   ngOnInit() {
 
     this.fortniteShopApiService.getShopItems().subscribe((data: any) =>{
-      this.shopItems = data.data.entries;
+      this.shopItems = data.shop;
       console.log(this.shopItems);
-      this.obj = this.shopItems.filter(item => item.layout.name !=='Jam Tracks');
-      console.log(this.obj);
+      this.tienda = this.shopItems.filter(item => item.section.name !=='Jam Tracks');
+      console.log(this.tienda);
       
-      this.obj.forEach(item => {
-        const categoryName = item.layout.name;
+      this.tienda.forEach(item => {
+        const categoryName = item.section.name;
+      
+        // Si la categoría no existe en 'grouped', inicializa el arreglo
         if (!this.grouped[categoryName]) {
-          this.grouped[categoryName] = []; // Inicializa el arreglo si no existe
+          this.grouped[categoryName] = [];
         }
-        this.grouped[categoryName].push(item); // Agrega el item al arreglo correspondiente
-        
+      
+        // Agrega el item al arreglo correspondiente de la categoría
+        this.grouped[categoryName].push(item);
       });
+      
+      // Ordena cada categoría de manera que los 'bundles' vayan primero y luego por 'priority'
+      Object.keys(this.grouped).forEach(category => {
+        this.grouped[category].sort((a, b) => {
+          // Coloca los 'bundles' primero (si mainType es 'bundle')
+          if (a.mainType === 'bundle' && b.mainType !== 'bundle') return -1; // a es bundle, b no lo es
+          if (a.mainType !== 'bundle' && b.mainType === 'bundle') return 1;  // b es bundle, a no lo es
+      
+          // Si ambos son bundles o no lo son, se ordena por 'priority' de forma descendente
+          return b.priority - a.priority;
+        });
+      });
+      
 
 
     });
 
   }
-
 }

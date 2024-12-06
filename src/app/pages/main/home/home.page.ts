@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { FortniteShopApiService } from 'src/app/services/fortnite-shop-api.service';
@@ -13,6 +14,7 @@ export class HomePage implements OnInit {
 
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
+  loadingCtrl = inject(LoadingController);
 
   newsItems: any[] = [];
 
@@ -34,5 +36,10 @@ export class HomePage implements OnInit {
   signOut() {
     this.firebaseSvc.signOut();
   }
+
+  loading() {
+    return this.loadingCtrl.create({ spinner: 'crescent'})
+  }
+
 
 }
