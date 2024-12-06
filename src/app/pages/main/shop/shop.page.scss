@@ -1,16 +1,28 @@
+ion-card {
+    background: var(--color-dark);
+}
+ion-button {
+    --color: var(--color-light);
+    --background: var(--color-purple);
+    --border-color: var(--color-purple);
+}
+ion-content {
+    --background: var(--color-purple);
+}
 ion-grid {
-  padding: 10px;
-}
-
-.category-header h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.api-card {
+    padding: 10px;
+  }
+  
+  .category-header h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .bundle-card,
+.item-card {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -21,65 +33,36 @@ ion-grid {
   color: #fff; /* Texto visible sobre fondo dinámico */
 }
 
-.api-card ion-card-title {
+.bundle-card ion-card-title,
+.item-card ion-card-title {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Contraste del texto */
 }
 
-.api-card ion-card-content {
+.bundle-card ion-card-content,
+.item-card ion-card-content {
   background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para contraste */
   padding: 10px;
   border-radius: 0 0 12px 12px; /* Redondeo para coincidencia con bordes */
 }
 
-.api-card:hover {
+.item-card:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
 }
 
-p {
-  margin: 5px 0;
-}
-
-.item-image {
-  border-radius: 8px;
-  width: 100%;
-  height: auto;
-}
-
-.item-price {
-  font-size: 14px;
-  color: #fff;
-}
-
-.offer-date {
-  font-size: 14px;
-  color: #ddd;
-}
-
-@media (max-width: 768px) {
-  .api-card {
-    margin: 10px 0;
+  
+  p {
+    margin: 5px 0;
   }
-
-  .category-header h2 {
-    font-size: 1.6rem;
+  
+  @media (max-width: 768px) {
+    .bundle-card,
+    .item-card {
+      margin: 10px 0;
+    }
+  
+    .category-header h2 {
+      font-size: 1.6rem;
+    }
   }
-}
-
-@media (max-width: 480px) {
-  .category-header h2 {
-    font-size: 1.4rem;
-  }
-
-  .api-card {
-    margin: 8px 0;
-  }
-
-  .api-card ion-card-title {
-    font-size: 1.2rem; /* Ajuste de tamaño de título en dispositivos pequeños */
-  }
-
-  .api-card ion-card-content {
-    padding: 8px;
-  }
-}
+  

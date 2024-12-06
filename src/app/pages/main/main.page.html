@@ -4,11 +4,7 @@
 
   <ion-content class="ion-text-center">
 
-
-    <ion-avatar>
-      <img *ngIf="user()?.image" [src]="user()?.image" />
-      <ion-icon *ngIf="!user()?.image" class="avatar-icon" name="person-circle-outline"></ion-icon>
-    </ion-avatar>
+    <ion-icon class="avatar-icon" name="person-circle-outline"></ion-icon>
 
     <h4>{{user()?.name}}</h4>
     

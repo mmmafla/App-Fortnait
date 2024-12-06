@@ -11,19 +11,18 @@ import { Observable } from 'rxjs';
 
 export class FortniteShopApiService {
 
-  private apiUrl = 'https://fortniteapi.io/v2/shop';
+  private apiUrl = 'https://fortnite-api.com/v2/shop';
   private key = 'afc78907-1dd3-428b-b17a-dd4ed8b161c3';
   private newsApiUrl = 'https://fortnite-api.com/v2/news';
   private torneos = 'https://fortniteapi.io/v1/events/list?lang=es&region=BR&season=current';
   private keytorneos = '5a8f26a2-3d756271-eed41ad1-144fe5e0';
-  private mapa = 'https://fortnite-api.com/v1/map';
 
   constructor(private http: HttpClient) { }
 
   getShopItems(): Observable<any> {
     return this.http.get<any>(this.apiUrl, {
       headers: {
-        'Authorization': this.keytorneos
+        'Authorization': this.key
       }
     });
   }
@@ -47,14 +46,5 @@ export class FortniteShopApiService {
       },
     });
   }
-  getMap(): Observable<any>{
-    return this.http.get<any>(this.mapa,{
-      headers: {
-        'Authorization': this.key,
-      },
-      params:{
-        'language': 'es',
-      }
-    })
-  }
+
 }
